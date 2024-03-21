@@ -211,6 +211,11 @@ int main(int argc, char *argv[])
        * server send an entity body?
        */
       /* START CODE SNIPPET 10 */
+      if (status_code == 200 && strcmp(new_request.method, "GET") == 0)
+      {
+        is_ok_to_send_resource = true;
+      }
+
       /* END CODE SNIPPET 10 */
 
       if (is_ok_to_send_resource)
@@ -225,6 +230,7 @@ int main(int argc, char *argv[])
          * send(??, "\r\n\r\n", strlen("\r\n\r\n"), 0);
          */
         /* START CODE SNIPPET 11 */
+        send(connection_socket, "\r\n\r\n", strlen("\r\n\r\n"), 0);
         /* END CODE SNIPPET 11 */
       }
 
