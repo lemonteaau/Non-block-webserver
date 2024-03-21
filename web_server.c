@@ -49,6 +49,18 @@ int main(int argc, char *argv[])
 
   /* 1) Create a socket */
   /* START CODE SNIPPET 1 */
+
+  listen_socket = socket(AF_INET, SOCK_STREAM, 0);
+  connection_socket = socket(AF_INET, SOCK_STREAM, 0);
+  if (listen_socket == -1)
+  {
+    printf("Could not create listen socket");
+  }
+
+  if (connection_socket == -1)
+  {
+    printf("Could not create connection socket");
+  }
   /* END CODE SNIPPET 1 */
 
   /* Check command-line argument for port and extract
@@ -102,7 +114,7 @@ int main(int argc, char *argv[])
       /* We are now in the child process */
 
       /* Close the listening socket
-       * The child process does not need access to listen_socket 
+       * The child process does not need access to listen_socket
        */
       if (close(listen_socket) < 0)
       {
@@ -114,7 +126,7 @@ int main(int argc, char *argv[])
       struct http_request new_request;
       /* 6) call helper function to read the request
        * this will fill in the struct new_request for you
-       * see helper.h and httpreq.h                      
+       * see helper.h and httpreq.h
        */
       /* START CODE SNIPPET 6 */
       /* END CODE SNIPPET 6 */
@@ -162,7 +174,7 @@ int main(int argc, char *argv[])
       }
 
       /* Child's work is done
-       * Close remaining descriptors and exit 
+       * Close remaining descriptors and exit
        */
       if (connection_socket >= 0)
       {
@@ -180,7 +192,7 @@ int main(int argc, char *argv[])
 
     /* Back in parent process
      * Close parent's reference to connection socket,
-     * then back to top of loop waiting for next request 
+     * then back to top of loop waiting for next request
      */
     if (connection_socket >= 0)
     {
