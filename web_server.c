@@ -155,6 +155,37 @@ int main(int argc, char *argv[])
 
       /* 7) Decide which status_code and reason phrase to return to client */
       /* START CODE SNIPPET 7 */
+      if (!new_request.method || !new_request.URI)
+      {
+        status_code = 400;
+        status_phrase = "Bad Request";
+      }
+      else if (strcmp(new_request.method, "GET") == 0)
+      {
+        if (Is_Valid_Resource(new_request.URI))
+        {
+          {
+            status_code = 200;
+            status_phrase = "OK";
+          }
+        }
+        else
+        {
+          status_code = 404;
+          status_phrase = "Not Found";
+        }
+      }
+      else if (strcmp(new_request.method, "HEAD") == 0)
+      {
+        status_code = 200;
+        status_phrase = "OK";
+      }
+      else
+      {
+        status_code = 501;
+        status_phrase = "Not Implemented";
+      }
+
       /* END CODE SNIPPET 7 */
 
       /* 8) Set the reply message to the client
