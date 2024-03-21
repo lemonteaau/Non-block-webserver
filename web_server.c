@@ -114,7 +114,14 @@ int main(int argc, char *argv[])
   {
     /* 5) Accept a connection */
     /* START CODE SNIPPET 5 */
-    accept(int socket, struct sockaddr *restrict address, socklen_t *restrict address_len);
+    puts("Waiting for incoming connections...");
+    int c = sizeof(struct sockaddr_in);
+    connection_socket = accept(listen_socket, (struct sockaddr *)&client_address, (socklen_t *)&c);
+    if (connection_socket < 0)
+    {
+      perror("accept failed");
+    }
+    puts("Connection accepted"); /* Inspired by the tutorial from https://www.binarytides.com/socket-programming-c-linux-tutorial/ */
     /* END CODE SNIPPET 5 */
 
     /* Fork a child process to handle this request */
