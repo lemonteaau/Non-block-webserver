@@ -114,6 +114,7 @@ int main(int argc, char *argv[])
   {
     /* 5) Accept a connection */
     /* START CODE SNIPPET 5 */
+    accept(int socket, struct sockaddr *restrict address, socklen_t *restrict address_len);
     /* END CODE SNIPPET 5 */
 
     /* Fork a child process to handle this request */
