@@ -155,12 +155,7 @@ int main(int argc, char *argv[])
 
       /* 7) Decide which status_code and reason phrase to return to client */
       /* START CODE SNIPPET 7 */
-      if (!new_request.method || !new_request.URI)
-      {
-        status_code = 400;
-        status_phrase = "Bad Request";
-      }
-      else if (strcmp(new_request.method, "GET") == 0)
+      if (strcmp(new_request.method, "GET") == 0)
       {
         if (Is_Valid_Resource(new_request.URI))
         {
@@ -180,10 +175,15 @@ int main(int argc, char *argv[])
         status_code = 200;
         status_phrase = "OK";
       }
-      else
+      else if (strcmp(new_request.method, "POST") == 0 || strcmp(new_request.method, "PUT") == 0 || strcmp(new_request.method, "DELETE") == 0 || strcmp(new_request.method, "CONNECT") == 0 || strcmp(new_request.method, "OPTIONS") == 0 || strcmp(new_request.method, "TRACE") == 0 || strcmp(new_request.method, "PATCH") == 0)
       {
         status_code = 501;
         status_phrase = "Not Implemented";
+      }
+      else
+      {
+        status_code = 400;
+        status_phrase = "Bad Request";
       }
 
       /* END CODE SNIPPET 7 */
