@@ -88,6 +88,9 @@ int main(int argc, char *argv[])
 
   /* 2) Set the values for the server address structure */
   /* START CODE SNIPPET 2 */
+  server_address.sin_family = AF_INET;
+  server_address.sin_addr.s_addr = INADDR_ANY;
+  server_address.sin_port = htons(port);
   /* END CODE SNIPPET 2 */
 
   /* 3) Bind the socket to the address information set in server_address */
