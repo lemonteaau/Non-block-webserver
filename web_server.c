@@ -193,6 +193,7 @@ int main(int argc, char *argv[])
        * sprintf(response_buffer, "HTTP/1.0 %d %s\r\n", ??, ??);
        */
       /* START CODE SNIPPET 8 */
+      sprintf(response_buffer, "HTTP/1.0 %d %s\r\n", status_code, status_phrase); /*e.g. HTTP/1.0 200 OK*/
       /* END CODE SNIPPET 8 */
 
       printf("Sending response line: %s\n", response_buffer);
@@ -202,6 +203,7 @@ int main(int argc, char *argv[])
        * send(??, response_buffer, strlen(response_buffer), 0);
        */
       /* START CODE SNIPPET 9 */
+      send(connection_socket, response_buffer, strlen(response_buffer), 0);
       /* END CODE SNIPPET 9 */
 
       bool is_ok_to_send_resource = false;
