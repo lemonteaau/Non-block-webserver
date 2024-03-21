@@ -146,6 +146,13 @@ int main(int argc, char *argv[])
        * see helper.h and httpreq.h
        */
       /* START CODE SNIPPET 6 */
+      if (!Parse_HTTP_Request(connection_socket, &new_request))
+      {
+        fprintf(stderr, "Error parsing HTTP request\n");
+        exit(EXIT_FAILURE);
+      }
+      printf("HTTP Method: %s\n", new_request.method);
+      printf("HTTP URI: %s\n", new_request.URI);
       /* END CODE SNIPPET 6 */
 
       /* 7) Decide which status_code and reason phrase to return to client */
