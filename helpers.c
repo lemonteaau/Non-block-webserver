@@ -161,7 +161,7 @@ bool Is_Valid_Resource(char *URI)
  *-----------------------------------------------------------
  */
 
-void Send_Header(int socket, char *URI)
+void Send_Resource(int socket, char *URI)
 {
 
   char *server_directory, *resource;
