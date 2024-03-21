@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
   if (connection_socket == -1)
   {
     printf("Could not create connection socket");
-  }
+  } /* Inspired by the tutorial from https://www.binarytides.com/socket-programming-c-linux-tutorial/ */
   /* END CODE SNIPPET 1 */
 
   /* Check command-line argument for port and extract
@@ -95,6 +95,11 @@ int main(int argc, char *argv[])
 
   /* 3) Bind the socket to the address information set in server_address */
   /* START CODE SNIPPET 3 */
+  if (bind(listen_socket, (struct sockaddr *)&server_address, sizeof(server_address)) < 0)
+  {
+    puts("bind failed");
+  }
+  puts("bind done");/* Inspired by the tutorial from https://www.binarytides.com/socket-programming-c-linux-tutorial/ */
   /* END CODE SNIPPET 3 */
 
   /* 4) Start listening for connections */
