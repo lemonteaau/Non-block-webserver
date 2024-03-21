@@ -151,8 +151,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Error parsing HTTP request\n");
         exit(EXIT_FAILURE);
       }
-      printf("HTTP Method: %s\n", new_request.method);
-      printf("HTTP URI: %s\n", new_request.URI);
       /* END CODE SNIPPET 6 */
 
       /* 7) Decide which status_code and reason phrase to return to client */
