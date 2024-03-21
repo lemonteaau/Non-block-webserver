@@ -99,11 +99,12 @@ int main(int argc, char *argv[])
   {
     puts("bind failed");
   }
-  puts("bind done");/* Inspired by the tutorial from https://www.binarytides.com/socket-programming-c-linux-tutorial/ */
+  puts("bind done"); /* Inspired by the tutorial from https://www.binarytides.com/socket-programming-c-linux-tutorial/ */
   /* END CODE SNIPPET 3 */
 
   /* 4) Start listening for connections */
   /* START CODE SNIPPET 4 */
+  listen(listen_socket, QLEN);
   /* END CODE SNIPPET 4 */
 
   /* Main server loop
