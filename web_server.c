@@ -215,13 +215,17 @@ int main(int argc, char *argv[])
       {
         is_ok_to_send_resource = true;
       }
-
+      /* There is still a bit modification under this part of code to response HEAD request correctly */
       /* END CODE SNIPPET 10 */
 
       if (is_ok_to_send_resource)
       {
         Send_Resource(connection_socket, new_request.URI);
       }
+      else if (status_code == 200 && strcmp(new_request.method, "HEAD") == 0)
+      {
+        Send_Header(connection_socket, new_request.URI);
+      } // to response HEAD request correctly
       else
       {
         /* 11) Do not send resource
